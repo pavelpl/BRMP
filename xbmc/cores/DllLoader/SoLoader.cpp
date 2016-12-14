@@ -22,6 +22,10 @@
 #include "SoLoader.h"
 #include "filesystem/SpecialProtocol.h"
 #include "utils/log.h"
+#if defined(TARGET_ANDROID)
+#include "CompileInfo.h"
+#include "utils/StringUtils.h"
+#endif
 
 SoLoader::SoLoader(const std::string &so, bool bGlobal) : LibraryLoader(so)
 {
@@ -43,7 +47,18 @@ bool SoLoader::Load()
 
   std::string strFileName= CSpecialProtocol::TranslatePath(GetFileName());
   int flags = RTLD_LAZY;
+#ifdef TARGET_ANDROID
+  std::string appName = CCompileInfo::GetAppName();
+  std::string libName = "lib" + appName + ".so";
+  StringUtils::ToLower(libName);
+
+  strFileName = strFileName.substr(strFileName.find_last_of('/') +1);
+
+  // Ignore ourselves.
+  if (strFileName == libName)
+#else
   if (strFileName == "xbmc.so")
+#endif
   {
     CLog::Log(LOGDEBUG, "Loading Internal Library\n");
     m_soHandle = RTLD_DEFAULT;

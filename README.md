@@ -1,4 +1,10 @@
-[![Build Status](https://travis-ci.org/xbmc/xbmc.svg?branch=Jarvis)](https://travis-ci.org/xbmc/xbmc)
+1. This is a fork of SPMC (which in turn is based on very well known KODI). The reason of choosing SPMC was that its developer Koying implemented simple re-branding (which I needed here).
+2. BRMP (unlike SPMC / KODI) is recognized by Sony Android TV as Video application. By doing that. 3D switch & 24p auto mode are enabled.
+3. No implementation changes were done compared to base SPMC. I've only change application name, package (essential for Video-app recognition), splash screen and icons.
+4. Keep in mind that all credit should go to KODI & SPMC developers. I've only done some adjustment.
+5. Use at your own risk ;)
+
+Logo & icons were made with <a href="http://logomakr.com" title="Logo Maker">Logo Maker</a>
 
 #### About
 
